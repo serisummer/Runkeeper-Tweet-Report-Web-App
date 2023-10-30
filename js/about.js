@@ -18,10 +18,15 @@ function parseTweets(runkeeper_tweets) {
 	document.getElementById('firstDate').innerText = firstDate;
 	document.getElementById('lastDate').innerText = lastDate;
 
-	let completed = 0, live = 0, achieve = 0, mis = 0;
+	let completed = 0, live = 0, achieve = 0, mis = 0, written = 0;
 	tweet_array.forEach(element => {
 		let tweet = new Tweet(element.text, element.time);
 		if (tweet.source == 'completed_event') {
+			if (tweet.written) {
+				written += 1;
+				console.log(tweet.text);
+				console.log(tweet.writtenText);
+			}
 			completed += 1;
 		}
 		else if (tweet.source == 'live_event') {
@@ -35,10 +40,11 @@ function parseTweets(runkeeper_tweets) {
 		}
 	});
 	
-	let completedPct = math.format(completed / tweet_array.length * 100, 3),
-		livePct = math.format(live / tweet_array.length * 100, 3),
-		achievePct = math.format(achieve / tweet_array.length * 100, 3),
-		misPct = math.format(mis / tweet_array.length * 100, 3);
+	let completedPct = Math.round(math.format(completed / tweet_array.length * 100, 4) * 100) / 100,
+		livePct = Math.round(math.format(live / tweet_array.length * 100, 4) * 100) / 100,
+		achievePct = Math.round(math.format(achieve / tweet_array.length * 100, 4) * 100) / 100,
+		misPct = Math.round(math.format(mis / tweet_array.length * 100, 4) * 100) / 100
+		writtenPct = Math.round(math.format(written / completed * 100, 4) * 100) / 100;
 
 	Array.from(document.getElementsByClassName('completedEvents')).forEach(element => {
 		element.innerText = completed;
@@ -51,6 +57,9 @@ function parseTweets(runkeeper_tweets) {
 	});
 	Array.from(document.getElementsByClassName('miscellaneous')).forEach(element => {
 		element.innerText = mis;
+	});
+	Array.from(document.getElementsByClassName('written')).forEach(element => {
+		element.innerText = written;
 	});
 
 
@@ -66,6 +75,11 @@ function parseTweets(runkeeper_tweets) {
 	Array.from(document.getElementsByClassName('miscellaneousPct')).forEach(element => {
 		element.innerText = misPct + '%';
 	});
+	Array.from(document.getElementsByClassName('writtenPct')).forEach(element => {
+		element.innerText = writtenPct + '%';
+	});
+
+	
 }
 
 //Wait for the DOM to load

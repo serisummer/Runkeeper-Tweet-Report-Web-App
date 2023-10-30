@@ -25,12 +25,15 @@ class Tweet {
     //returns a boolean, whether the text includes any content written by the person tweeting.
     get written():boolean {
         //TODO: identify whether the tweet is written
+        if (this.text.includes('-')){
+            return true;
+        }
         return false;
     }
 
     get writtenText():string {
-        if(!this.written) {
-            return "";
+        if(this.written) {
+            return this.text.substring(this.text.indexOf('-') + 2, this.text.indexOf('http') - 1);
         }
         //TODO: parse the written text from the tweet
         return "";

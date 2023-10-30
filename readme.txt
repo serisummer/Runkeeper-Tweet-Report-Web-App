@@ -5,7 +5,7 @@
 */20
 - 2/2 Tweet dates
 - 3/3 Tweet categories
-- */3 User-written tweets
+- 3/3 User-written tweets
 - */3 Determining activity type and distance
 - */3 Graphing activities by distance
 - */3 Implementing the search box
@@ -19,6 +19,8 @@
 https://mathjs.org/docs/reference/functions/format.html
 https://stackoverflow.com/questions/3871547/iterating-over-result-of-getelementsbyclassname-using-array-foreach
 https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName
+https://learnersbucket.com/examples/javascript/learn-how-to-round-to-2-decimal-places-in-javascript/
+https://www.w3schools.com/jsref/jsref_indexof.asp
 
 4. What classmates or other individuals did you consult as part of this assignment? What did you discuss?
 None
