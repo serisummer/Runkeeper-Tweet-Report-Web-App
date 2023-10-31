@@ -32,19 +32,82 @@ class Tweet {
     }
 
     get writtenText():string {
-        if(this.written) {
-            return this.text.substring(this.text.indexOf('-') + 2, this.text.indexOf('http') - 1);
+        if(!this.written) {
+            return "";
         }
         //TODO: parse the written text from the tweet
-        return "";
+        return this.text.substring(this.text.indexOf('-') + 2, this.text.indexOf('http') - 1);
     }
 
     get activityType():string {
         if (this.source != 'completed_event') {
             return "unknown";
         }
-        //TODO: parse the activity type from the text of the tweet
-        return "";
+        let textLower = this.text.toLowerCase();
+        if (textLower.includes(' ski ')) {
+            return "skiing";
+        }
+        if(textLower.includes(' run ') ) {  
+            return 'running';
+        }
+        if(textLower.includes(' walk ')) {
+            return "walking"; 
+        }
+        if(textLower.includes(' mtn ')) {
+            return "mountain biking";
+        }
+        if(textLower.includes(' bike ')) {
+            return "biking";
+        }
+        if(textLower.includes(' hike ')) {
+            return "hiking";
+        }
+        if(textLower.includes(' activity ')) {
+            return "activity"; 
+        }
+        if(textLower.includes(' swim ')) {
+            return "swimming"; 
+        }
+        if(textLower.includes(' chair ride ')) {
+            return "chair riding"; 
+        }
+        if(textLower.includes(' yoga ')){
+            return "yoga";
+        }
+        if(textLower.includes(' workout ')){
+            return "workout";
+        }
+        if(textLower.includes(' freestyle ')){
+            return "freestyle"; 
+        }
+        if(textLower.includes(' row ')){
+            return "rowing";
+        }
+        if(textLower.includes(' snowboard ')){
+            return "snowboard";
+        }
+        if(textLower.includes(' meditation ')){
+            return "meditating";
+        }
+        if(textLower.includes(' pilates ')){
+            return "pilates";
+        }
+        if(textLower.includes(' skate ')){
+            return "skating";
+        }
+        if(textLower.includes(' boxing ')){
+            return "boxing";
+        }
+        if(textLower.includes(' dance')){
+            return "dance";
+        }
+        if(textLower.includes(' football')){
+            return "football";
+        }
+        if(textLower.includes(' gym')){
+            return "gym";
+        }
+        return "unknown";
     }
 
     get distance():number {
@@ -52,7 +115,38 @@ class Tweet {
             return 0;
         }
         //TODO: prase the distance from the text of the tweet
+        if (this.text.includes(' mi '))
+            return parseFloat(this.text.substring(this.text.indexOf(' a ') + 3, this.text.indexOf(' mi ') + 3));
+        if (this.text.includes(' km ')) {
+            return parseFloat(this.text.substring(this.text.indexOf(' a ') + 3, this.text.indexOf(' km ') + 3)) * 0.621371;
+        }
         return 0;
+    }
+
+
+    get day():string {
+        if(this.time.toString().includes('Mon')) {
+            return "Mon";
+        }
+        if(this.time.toString().includes('Tue')) {
+            return "Tue";
+        }
+        if(this.time.toString().includes('Wed')) {
+            return "Wed";
+        }
+        if(this.time.toString().includes('Thu')) {
+            return "Thu";
+        }
+        if(this.time.toString().includes('Fri')) {
+            return "Fri";
+        }
+        if(this.time.toString().includes('Sat')) {
+            return "Sat";
+        }
+        if(this.time.toString().includes('Sun')) {
+            return "Sun";
+        }
+        return "";
     }
 
     getHTMLTableRow(rowNumber:number):string {

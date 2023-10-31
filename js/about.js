@@ -24,8 +24,6 @@ function parseTweets(runkeeper_tweets) {
 		if (tweet.source == 'completed_event') {
 			if (tweet.written) {
 				written += 1;
-				console.log(tweet.text);
-				console.log(tweet.writtenText);
 			}
 			completed += 1;
 		}
