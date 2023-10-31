@@ -149,8 +149,25 @@ class Tweet {
         return "";
     }
 
+    get link():string {
+        let link = "";
+        let regex = /(http|https|ftp):\/\/([^\s]+)/g;
+        let matched = this.text.match(regex);
+        if(matched != null){
+            matched.forEach(element => {
+                link += element.toString();
+            });
+        }
+        return link;
+    }
+
+    get clickableLinkText():string {
+        return this.text.replace(this.link, '<a href="' + this.link + '">' + this.link + '</a>');
+    }
+
     getHTMLTableRow(rowNumber:number):string {
         //TODO: return a table row which summarizes the tweet with a clickable link to the RunKeeper activity
+
         return "<tr></tr>";
     }
 }
